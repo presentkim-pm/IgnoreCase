@@ -1,6 +1,6 @@
 ---
 name: IgnoreCase
-main: kim\present\ignorecase\IndividualChest
+main: kim\present\ignorecase\IgnoreCase
 version: 0.0.1-DEV
 api: [3.0.0, 4.0.0]
 author: PresentKim
