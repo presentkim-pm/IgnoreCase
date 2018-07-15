@@ -27,6 +27,7 @@ declare(strict_types=1);
 namespace kim\present\ignorecase;
 
 use kim\present\ignorecase\listener\CommandEventListener;
+use kim\present\ignorecase\task\CheckUpdateAsyncTask;
 use pocketmine\plugin\PluginBase;
 
 class IgnoreCase extends PluginBase{
@@ -49,8 +50,42 @@ class IgnoreCase extends PluginBase{
 	 * Called when the plugin is enabled
 	 */
 	public function onEnable() : void{
+		//Load config file
+		$this->saveDefaultConfig();
+		$this->reloadConfig();
+		$config = $this->getConfig();
+
+		//Check latest version
+		if($config->getNested("settings.update-check", false)){
+			$this->getServer()->getAsyncPool()->submitTask(new CheckUpdateAsyncTask());
+		}
+
 		//Register event listeners
 		$this->getServer()->getPluginManager()->registerEvents(new CommandEventListener($this), $this);
+	}
+
+	/**
+	 * @Override for multilingual support of the config file
+	 *
+	 * @return bool
+	 */
+	public function saveDefaultConfig() : bool{
+		$resource = $this->getResource("lang/{$this->getServer()->getLanguage()->getLang()}/config.yml");
+		if($resource === null){
+			$resource = $this->getResource("lang/eng/config.yml");
+		}
+
+		$dataFolder = $this->getDataFolder();
+		if(!file_exists($configFile = "{$dataFolder}config.yml")){
+			if(!file_exists($dataFolder)){
+				mkdir($dataFolder, 0755, true);
+			}
+			$ret = stream_copy_to_stream($resource, $fp = fopen($configFile, "wb")) > 0;
+			fclose($fp);
+			fclose($resource);
+			return $ret;
+		}
+		return false;
 	}
 
 	/**
