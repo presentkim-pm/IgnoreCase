@@ -50,4 +50,27 @@ class IgnoreCase extends PluginBase{
 	public function onEnable() : void{
 		//TODO: Do something
 	}
+
+	/**
+	 * Replace with exact command with ignore case
+	 *
+	 * @param string $command
+	 *
+	 * @return string
+	 */
+	public function replaceCommand(string $command) : string{
+		$explode = explode(" ", $command);
+		$commands = $this->getServer()->getCommandMap()->getCommands();
+		if(isset($commands[$explode[0]])){
+			return $command;
+		}else{
+			foreach($this->getServer()->getCommandMap()->getCommands() as $key => $value){
+				if(strcasecmp($explode[0], $key) === 0){
+					$explode[0] = $key;
+					break;
+				}
+			}
+		}
+		return implode(" ", $explode);
+	}
 }
