@@ -26,6 +26,7 @@ declare(strict_types=1);
 
 namespace kim\present\ignorecase;
 
+use kim\present\ignorecase\listener\CommandEventListener;
 use pocketmine\plugin\PluginBase;
 
 class IgnoreCase extends PluginBase{
@@ -48,7 +49,8 @@ class IgnoreCase extends PluginBase{
 	 * Called when the plugin is enabled
 	 */
 	public function onEnable() : void{
-		//TODO: Do something
+		//Register event listeners
+		$this->getServer()->getPluginManager()->registerEvents(new CommandEventListener($this), $this);
 	}
 
 	/**
