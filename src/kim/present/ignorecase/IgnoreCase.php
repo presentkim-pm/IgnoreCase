@@ -89,7 +89,7 @@ class IgnoreCase extends PluginBase{
 	}
 
 	/**
-	 * Replace with exact command with ignore case
+	 * Replace command to exact command with ignore case
 	 *
 	 * @param string $command
 	 *
