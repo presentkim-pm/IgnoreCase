@@ -28,10 +28,7 @@ namespace kim\present\ignorecase\listener;
 
 use kim\present\ignorecase\IgnoreCase;
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerCommandPreprocessEvent;
-use pocketmine\event\server\{
-	RemoteServerCommandEvent, ServerCommandEvent
-};
+use pocketmine\event\server\CommandEvent;
 
 class CommandEventListener implements Listener{
 	/** @var IgnoreCase */
@@ -49,29 +46,9 @@ class CommandEventListener implements Listener{
 	/**
 	 * @priority LOWEST
 	 *
-	 * @param PlayerCommandPreprocessEvent $event
+	 * @param CommandEvent $event
 	 */
-	public function onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent $event) : void{
-		if(strpos($message = $event->getMessage(), "/") === 0){
-			$event->setMessage("/{$this->plugin->replaceCommand(substr($message, 1))}");
-		}
-	}
-
-	/**
-	 * @priority LOWEST
-	 *
-	 * @param ServerCommandEvent $event
-	 */
-	public function onServerCommandEvent(ServerCommandEvent $event) : void{
+	public function onCommandEvent(CommandEvent $event) : void{
 		$event->setCommand($this->plugin->replaceCommand($event->getCommand()));
-	}
-
-	/**
-	 * @priority LOWEST
-	 *
-	 * @param RemoteServerCommandEvent $event
-	 */
-	public function onRemoteServerCommandEvent(RemoteServerCommandEvent $event) : void{
-		$this->onServerCommandEvent($event);
 	}
 }
