@@ -1,4 +1,4 @@
-# <img src="./assets/icon/index.svg" height="50" width="50"> IgnoreCase  
+# <img src="https://rawgit.com/PresentKim/SVG-files/master/plugin-icons/ignorecase.svg" height="50" width="50"> IgnoreCase  
 __A plugin for [PMMP](https://pmmp.io) :: Ignore case when use the command!__  
   
 [![license](https://img.shields.io/github/license/Blugin/IgnoreCase-PMMP.svg?label=License)](./LICENSE)
