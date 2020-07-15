@@ -39,34 +39,24 @@ class IgnoreCase extends PluginBase implements Listener{
     }
 
     /**
+     * Replace command to exact command with ignore case
+     *
      * @priority LOWEST
      *
      * @param CommandEvent $event
      */
     public function onCommandEvent(CommandEvent $event) : void{
-        $event->setCommand($this->replaceCommand($event->getCommand()));
-    }
-
-    /**
-     * Replace command to exact command with ignore case
-     *
-     * @param string $command
-     *
-     * @return string
-     */
-    public function replaceCommand(string $command) : string{
-        $explode = explode(" ", $command);
+        $explode = explode(" ", $event->getCommand());
         $commands = $this->getServer()->getCommandMap()->getCommands();
-        if(isset($commands[$explode[0]])){
-            return $command;
-        }else{
-            foreach($this->getServer()->getCommandMap()->getCommands() as $key => $value){
-                if(strcasecmp($explode[0], $key) === 0){
-                    $explode[0] = $key;
-                    break;
-                }
+        if(isset($commands[$explode[0]]))
+            return;
+
+        foreach($this->getServer()->getCommandMap()->getCommands() as $key => $value){
+            if(strcasecmp($explode[0], $key) === 0){
+                $explode[0] = $key;
+                break;
             }
         }
-        return implode(" ", $explode);
+        $event->setCommand(implode(" ", $explode));
     }
 }
