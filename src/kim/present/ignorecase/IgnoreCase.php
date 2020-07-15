@@ -30,21 +30,6 @@ use pocketmine\event\server\CommandEvent;
 use pocketmine\plugin\PluginBase;
 
 class IgnoreCase extends PluginBase implements Listener{
-    /** @var IgnoreCase */
-    private static $instance;
-
-    /** @return IgnoreCase */
-    public static function getInstance() : IgnoreCase{
-        return self::$instance;
-    }
-
-    /**
-     * Called when the plugin is loaded, before calling onEnable()
-     */
-    public function onLoad() : void{
-        self::$instance = $this;
-    }
-
     /**
      * Called when the plugin is enabled
      */
