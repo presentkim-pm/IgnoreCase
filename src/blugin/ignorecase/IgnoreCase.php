@@ -32,11 +32,7 @@ use pocketmine\event\server\CommandEvent;
 use pocketmine\plugin\PluginBase;
 
 class IgnoreCase extends PluginBase implements Listener{
-    /**
-     * Called when the plugin is enabled
-     */
     public function onEnable() : void{
-        //Register event listeners
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
