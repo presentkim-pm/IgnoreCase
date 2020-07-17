@@ -53,7 +53,7 @@ class IgnoreCase extends PluginBase implements Listener{
         if(isset($commands[$explode[0]]))
             return;
 
-        foreach($this->getServer()->getCommandMap()->getCommands() as $key => $value){
+        foreach($commands as $key => $value){
             if(strcasecmp($explode[0], $key) === 0){
                 $explode[0] = $key;
                 break;
