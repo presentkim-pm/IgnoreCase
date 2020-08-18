@@ -1,7 +1,7 @@
 ---
 name: IgnoreCase
 main: blugin\ignorecase\IgnoreCase
-version: 1.0.1
+version: 1.1.0
 api: [3.0.0, 4.0.0]
 authors: ['Blugin-team', 'PresentKim']
 description: Ignore case when use the command!
