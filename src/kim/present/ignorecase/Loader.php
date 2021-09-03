@@ -52,7 +52,7 @@ final class Loader extends PluginBase implements Listener{
          * Delete the unnecessary data folder of this plugin for users.
          */
         $dataFolder = $this->getDataFolder();
-        if(is_dir($dataFolder) && empty(scandir($dataFolder))){
+        if(is_dir($dataFolder) && count(scandir($dataFolder)) <= 2){
             rmdir($dataFolder);
         }
     }
