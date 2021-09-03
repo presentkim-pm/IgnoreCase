@@ -69,6 +69,9 @@ class IgnoreCase extends PluginBase implements Listener{
             if(strcasecmp($explode[0], $key) === 0){
                 $explode[0] = $key;
                 break;
+            }elseif(strcasecmp($explode[0], $label = $value->getLabel()) === 0){
+                $explode[0] = $label;
+                break;
             }
         }
         $event->setCommand(implode(" ", $explode));
