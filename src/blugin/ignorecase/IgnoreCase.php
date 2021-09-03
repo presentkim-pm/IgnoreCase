@@ -31,9 +31,25 @@ use pocketmine\event\Listener;
 use pocketmine\event\server\CommandEvent;
 use pocketmine\plugin\PluginBase;
 
+use function explode;
+use function implode;
+use function is_dir;
+use function rmdir;
+use function scandir;
+use function strcasecmp;
+
 class IgnoreCase extends PluginBase implements Listener{
     public function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
+
+        /**
+         * This is a plugin that does not use data folders.
+         * Delete the unnecessary data folder of this plugin for users.
+         */
+        $dataFolder = $this->getDataFolder();
+        if(is_dir($dataFolder) && empty(scandir($dataFolder))){
+            rmdir($dataFolder);
+        }
     }
 
     /**
