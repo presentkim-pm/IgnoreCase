@@ -1,7 +1,7 @@
 ---
 name: IgnoreCase
 main: kim\present\ignorecase\Loader
-version: 0.0.1
+version: 1.0.0
 api: [4.0.0]
 author: PresentKim
 description: Ignore case when use the command!
