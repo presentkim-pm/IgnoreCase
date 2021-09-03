@@ -38,8 +38,8 @@ use function rmdir;
 use function scandir;
 use function strcasecmp;
 
-class IgnoreCase extends PluginBase implements Listener{
-    public function onEnable() : void{
+final class IgnoreCase extends PluginBase implements Listener{
+    protected function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         /**
