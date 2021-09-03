@@ -31,14 +31,19 @@ use pocketmine\event\Listener;
 use pocketmine\event\server\CommandEvent;
 use pocketmine\plugin\PluginBase;
 
+use function array_shift;
 use function explode;
 use function implode;
 use function is_dir;
 use function rmdir;
+use function rtrim;
 use function scandir;
 use function strcasecmp;
 
 final class IgnoreCase extends PluginBase implements Listener{
+    /** @var array<string, string> */
+    private array $caches = ["" => ""];
+
     protected function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
@@ -56,24 +61,38 @@ final class IgnoreCase extends PluginBase implements Listener{
      * Replace command to exact command with ignore case
      *
      * @priority LOWEST
-     *
-     * @param CommandEvent $event
      */
     public function onCommandEvent(CommandEvent $event) : void{
-        $explode = explode(" ", rtrim($event->getCommand(), "\r\n"));
-        $commands = $this->getServer()->getCommandMap()->getCommands();
-        if(isset($commands[$explode[0]]))
-            return;
+        $commandLines = explode(" ", rtrim($event->getCommand(), "\r\n"));
+        $label = array_shift($commandLines);
 
+        /** Check caches and change command name if cache is not empty */
+        if(($cache = $this->caches[$label] ?? null) !== null){
+            if($cache !== ""){
+                $event->setCommand(implode(" ", [$cache, ...$commandLines]));
+            }
+            return;
+        }
+
+        $commands = $this->getServer()->getCommandMap()->getCommands();
+        if(isset($commands[$label])){
+            /** Register "" to cache to avoid retrying navigations */
+            $this->caches[$label] = "";
+            return;
+        }
+
+        /** Find command by case-insensitive and register caches */
         foreach($commands as $key => $value){
-            if(strcasecmp($explode[0], $key) === 0){
-                $explode[0] = $key;
-                break;
-            }elseif(strcasecmp($explode[0], $label = $value->getLabel()) === 0){
-                $explode[0] = $label;
-                break;
+            if(
+                strcasecmp($label, $find = $key) === 0 ||
+                strcasecmp($label, $find = $value->getLabel()) === 0
+            ){
+                $this->caches[$label] = $find;
+                $event->setCommand(implode(" ", [$find, ...$commandLines]));
+                return;
             }
         }
-        $event->setCommand(implode(" ", $explode));
+        /** Register "" to cache to avoid retrying navigations */
+        $this->caches[$label] = "";
     }
 }
