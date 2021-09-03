@@ -60,7 +60,7 @@ class IgnoreCase extends PluginBase implements Listener{
      * @param CommandEvent $event
      */
     public function onCommandEvent(CommandEvent $event) : void{
-        $explode = explode(" ", $event->getCommand());
+        $explode = explode(" ", rtrim($event->getCommand(), "\r\n"));
         $commands = $this->getServer()->getCommandMap()->getCommands();
         if(isset($commands[$explode[0]]))
             return;
