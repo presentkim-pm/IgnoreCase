@@ -1,8 +1,8 @@
 ---
 name: IgnoreCase
 main: kim\present\ignorecase\Main
-version: 1.0.0
+version: 1.3.0
 api: [4.0.0]
 author: PresentKim
-description: Ignore case when use the command!
+description: Automatically corrects the case of commands
 ...
