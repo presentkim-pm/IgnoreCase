@@ -1,0 +1,79 @@
+<html lang="en">
+<head><script src="https://github.com/niklasvh/html2canvas/releases/download/v1.4.1/html2canvas.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'JetBrains Mono';
+            font-style: normal;
+            font-weight: 100;
+            src: url('https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/fonts/webfonts/JetBrainsMono-Bold.woff2') format("woff2");
+            font-display: swap;
+        }
+
+        * {
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .code-block {
+            display: block;
+            background-color: #272822;
+            border-radius: 5px;
+            margin: 20px;
+            padding: 15px;
+        }
+
+        .code-annotation {
+            color: #75715e;
+        }
+
+        .code-command {
+            color: #2e8798;
+        }
+
+        .code-number {
+            color: #ae81ff;
+        }
+
+        .message-success {
+            color: #229f26;
+        }
+
+        .message-failed {
+            color: #f92672;
+        }
+    </style>
+</head>
+<body>
+<div class="code-block" translate="no">
+    <svg xmlns="http://www.w3.org/2000/svg" width="54" height="14">
+        <circle cx="7" cy="7" r="6" fill="#FF5F56" stroke="#E0443E"/>
+        <circle cx="27" cy="7" r="6" fill="#FFBD2E" stroke="#DEA123"/>
+        <circle cx="47" cy="7" r="6" fill="#27C93F" stroke="#1AAB29"/>
+    </svg>
+    <br/>
+    <br/>
+    <p class="code-annotation"># CONSOLE Test Without IgnoreCase plugin</p>
+    <p class="code-command">say Lowercase Test...OK</p>
+    [<span class="code-number">00:00:04</span>] [Serverthread/INFO]: <span class="message-success">[Server] Lowercase Test...OK</span><br/>
+    <br/>
+    <p class="code-command">SAY Uppercase Test...FAILED</p>
+    [<span class="code-number">00:00:06</span>] [Serverthread/INFO]: <span class="message-failed">Unknown command: SAY. Use /help for a list of available commands.</span><br/>
+    <br/>
+    <p class="code-command">sAy Complex Test...FAILED</p>
+    [<span class="code-number">00:00:09</span>] [Serverthread/INFO]: <span class="message-failed">Unknown command: sAy. Use /help for a list of available commands.</span><br/>
+    <br/>
+    <br/>
+    <p class="code-annotation"># CONSOLE Test With IgnoreCase plugin</p>
+    <p class="code-command">say Lowercase Test...OK</p>
+    [<span class="code-number">00:00:13</span>] [Serverthread/INFO]: <span class="message-success">[Server] Lowercase Test...OK</span><br/>
+    <br/>
+    <p class="code-command">SAY Uppercase Test...OK</p>
+    [<span class="code-number">00:00:18</span>] [Serverthread/INFO]: <span class="message-success">[Server] Uppercase Test...OK</span><br/>
+    <br/>
+    <p class="code-command">sAy Complex Test...OK</p>
+    [<span class="code-number">00:00:24</span>] [Serverthread/INFO]: <span class="message-success">[Server] Complex Test...OK</span><br/>
+</div>
+</body>
+</html>
