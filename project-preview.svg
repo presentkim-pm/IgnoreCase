@@ -10,24 +10,24 @@
             <div>
                 <span class="code-annotation"># CONSOLE Test Without IgnoreCase plugin</span><br/>
                 <span class="code-command">say Lowercase Test...OK</span><br/>
-                [<span class="code-number">00:00:04</span>] [Serverthread/INFO]:<span class="message-success">[Server] Lowercase Test...OK</span><br/>
+                [<span class="code-number">00:00:04</span>] [Serverthread/INFO]: <span class="message-success">[Server] Lowercase Test...OK</span><br/>
                 <br/>
                 <span class="code-command">SAY Uppercase Test...FAILED</span><br/>
-                [<span class="code-number">00:00:06</span>] [Serverthread/INFO]:<span class="message-failed">Unknown command: SAY. Use /help for a list of available commands.</span><br/>
+                [<span class="code-number">00:00:06</span>] [Serverthread/INFO]: <span class="message-failed">Unknown command: SAY. Use /help for a list of available commands.</span><br/>
                 <br/>
                 <span class="code-command">sAy Complex Test...FAILED</span><br/>
-                [<span class="code-number">00:00:09</span>] [Serverthread/INFO]:<span class="message-failed">Unknown command: sAy. Use /help for a list of available commands.</span><br/>
+                [<span class="code-number">00:00:09</span>] [Serverthread/INFO]: <span class="message-failed">Unknown command: sAy. Use /help for a list of available commands.</span><br/>
                 <br/>
                 <br/>
                 <span class="code-annotation"># CONSOLE Test With IgnoreCase plugin</span><br/>
                 <span class="code-command">say Lowercase Test...OK</span><br/>
-                [<span class="code-number">00:00:13</span>] [Serverthread/INFO]:<span class="message-success">[Server] Lowercase Test...OK</span><br/>
+                [<span class="code-number">00:00:13</span>] [Serverthread/INFO]: <span class="message-success">[Server] Lowercase Test...OK</span><br/>
                 <br/>
                 <span class="code-command">SAY Uppercase Test...OK</span><br/>
-                [<span class="code-number">00:00:18</span>] [Serverthread/INFO]:<span class="message-success">[Server] Uppercase Test...OK</span><br/>
+                [<span class="code-number">00:00:18</span>] [Serverthread/INFO]: <span class="message-success">[Server] Uppercase Test...OK</span><br/>
                 <br/>
                 <span class="code-command">sAy Complex Test...OK</span><br/>
-                [<span class="code-number">00:00:24</span>] [Serverthread/INFO]:<span class="message-success">[Server] Complex Test...OK</span><br/>
+                [<span class="code-number">00:00:24</span>] [Serverthread/INFO]: <span class="message-success">[Server] Complex Test...OK</span><br/>
             </div>
         </div>
     </foreignObject>
@@ -36,7 +36,7 @@
             font-family: 'JetBrains Mono';
             font-style: normal;
             font-weight: 100;
-            src: url('https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/fonts/webfonts/JetBrainsMono-Regular.woff2')
+            src: url('https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/fonts/webfonts/JetBrainsMono-Bold.woff2')
             format("woff2");
             font-display:swap;
         }
