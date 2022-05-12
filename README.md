@@ -1,62 +1,75 @@
-<p align="center"> <img src="https://ghcdn.rawgit.org/PresentKim/IgnoreCase/master/icon.png" width="360"> </p>
-<br> <h1 align="center"> IgnoreCase :: Ignore case when use the command! </h1>
-<p align="right">  
-  <a href="https://github.com/PresentKim/IgnoreCase/blob/master/README_KOR.md">  
-    <img src="https://img.shields.io/static/v1?label=%ED%95%9C%EA%B5%AD%EC%96%B4&message=%EB%A1%9C+%EC%9D%BD%EA%B8%B0&labelColor=success">  
-  </a>  
-</p>  
-<p align="center">  
-  <a href="https://poggit.pmmp.io/ci/PresentKim/IgnoreCase/IgnoreCase">  
-    <img src="https://poggit.pmmp.io/ci.shield/PresentKim/IgnoreCase/IgnoreCase?style=flat-square">  
-  </a>  
-  <a href="https://github.com/PresentKim/IgnoreCase/releases">  
-    <img src="https://img.shields.io/github/release/PresentKim/IgnoreCase.svg?style=flat-square">  
-  </a>  
-  <a href="https://github.com/PresentKim/IgnoreCase/releases">  
-    <img src="https://img.shields.io/github/downloads/PresentKim/IgnoreCase/total.svg?style=flat-square">  
-  </a>  
-  </a>  
-  <a href="https://github.com/PresentKim/IgnoreCase/blob/master/LICENSE">  
-    <img src="https://img.shields.io/github/license/PresentKim/IgnoreCase.svg?style=flat-square">  
-  </a>  
-  <a href="http://hits.dwyl.com/PresentKim/IgnoreCase">  
-    <img src="http://hits.dwyl.com/PresentKim/IgnoreCase.svg">  
-  </a>  
-  <strong>
-  <br> ✔️ If the case of the command is incorrect, it is automatically corrected!  
-  <br> ✔️ Don't worry about case now!  
-  </strong>
-</p>  
-  
-<br>  
-<br>  
-  
-## :file_folder: Target software:  
-**This plugin officially only works with [Pocketmine-MP `API 3.x.x`](https://github.com/pmmp/PocketMine-MP/tree/stable)**
-> **If you use [**Pocketmine-MP** `API 4.x.x`](https://github.com/pmmp/PocketMine-MP/tree/master),**  
-> **You should get the latest 0.0.1 version. (This version does not go up explicitly)**  
-> **This version does not distribute plugin builds. You need to build from the source directly from the [`pm4.0.0`](https://github.com/PresentKim/IgnoreCase/tree/pm4.0.0) branch.**
-  
-<br>  
-  
-## :wrench: Installation
-1) Download `.phar` from releases  
-2) Move dowloaded `.phar` file to server's **/plugins/** folder  
-3) Restart the server or execute `/reload` command  
+<!-- PROJECT BADGES -->
+<div align="center">
 
-<br>  
-  
-## :package: Downloads  
-  
-| Version | Phar Download | Updates Note |  
-| :-----: | :-----------: | :----------: |    
-| 1.1.0 | [GitHub](https://github.com/PresentKim/IgnoreCase/releases/download/1.1.0/IgnoreCase_v1.1.0.phar)  | **Init plugin (Implements plugin features)** |  
-  
-> **All released versions [here](https://github.com/PresentKim/IgnoreCase/releases)**  
-  
-<br>   
-  
-## :memo: License  
-> You can check out the full license [here](https://github.com/PresentKim/IgnoreCase/blob/master/LICENSE)  
-  
-This project licensed under the terms of the **LGPL 3.0**  
+[![Poggit CI][poggit-ci-badge]][poggit-ci-url]
+[![Poggit Version][poggit-version-badge]][poggit-release-url]
+[![Poggit Downloads][poggit-downloads-badge]][poggit-release-url]
+[![Stars][stars-badge]][stars-url]
+[![License][license-badge]][license-url]
+
+</div>
+
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <img src="https://raw.githubusercontent.com/presentkim-pm/IgnoreCase/main/icon.png" alt="Logo" width="80" height="80">
+  <h3>IgnoreCase</h3>
+  <p align="center">
+    An plugin that automatically corrects the case of commands!
+
+[View in Poggit][poggit-ci-url] · [Report a bug][issues-url] · [Request a feature][issues-url]
+
+  </p>
+</div>
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+![Project Preview][project-preview]
+
+The functionality of the plugin is very simple.  
+If the case of the command is incorrect, it is automatically corrected.  
+ex) `/Tp someone` => `/tp someone`  
+ex) `/SAY hello` => `/say hello`  
+
+-----
+
+## Target software:
+This plugin officially only works with [`Pocketmine-MP`](https://github.com/pmmp/PocketMine-MP/).
+
+-----
+
+## Installation
+1) Download `.phar` from [Poggit release][poggit-release-url]
+2) Move downloaded `.phar` file to server's **/plugins/** folder
+3) Restart the server
+
+-----
+
+## Downloads
+> **All released versions [here][poggit-release-url]**
+
+> **All built versions [here][poggit-ci-url]**
+
+-----
+
+## License
+Distributed under the **LGPL 3.0**. See [LICENSE][license-url] for more information
+
+
+[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/IgnoreCase/IgnoreCase?style=for-the-badge
+[poggit-version-badge]: https://poggit.pmmp.io/shield.api/IgnoreCase?style=for-the-badge
+[poggit-downloads-badge]: https://poggit.pmmp.io/shield.dl.total/IgnoreCase?style=for-the-badge
+[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/IgnoreCase.svg?style=for-the-badge
+[license-badge]: https://img.shields.io/github/license/presentkim-pm/IgnoreCase.svg?style=for-the-badge
+
+[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/IgnoreCase/IgnoreCase
+[poggit-release-url]: https://poggit.pmmp.io/p/IgnoreCase
+[stars-url]: https://github.com/presentkim-pm/IgnoreCase/stargazers
+[releases-url]: https://github.com/presentkim-pm/IgnoreCase/releases
+[issues-url]: https://github.com/presentkim-pm/IgnoreCase/issues
+[license-url]: https://github.com/presentkim-pm/IgnoreCase/blob/main/LICENSE
+
+[project-icon]: https://raw.githubusercontent.com/presentkim-pm/IgnoreCase/main/icon.png
+[project-preview]: https://raw.githubusercontent.com/presentkim-pm/IgnoreCase/main/project-preview.png
