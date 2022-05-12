@@ -40,7 +40,7 @@ use function rtrim;
 use function scandir;
 use function strcasecmp;
 
-final class Loader extends PluginBase implements Listener{
+final class Main extends PluginBase implements Listener{
     /** @var array<string, string> */
     private array $caches = ["" => ""];
 
