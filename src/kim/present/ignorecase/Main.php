@@ -27,6 +27,7 @@ declare(strict_types=1);
 
 namespace kim\present\ignorecase;
 
+use kim\present\traits\removeplugindatadir\RemovePluginDataDirTrait;
 use pocketmine\event\Listener;
 use pocketmine\event\server\CommandEvent;
 use pocketmine\plugin\PluginBase;
@@ -34,27 +35,17 @@ use pocketmine\plugin\PluginBase;
 use function array_shift;
 use function explode;
 use function implode;
-use function is_dir;
-use function rmdir;
 use function rtrim;
-use function scandir;
 use function strcasecmp;
 
 final class Main extends PluginBase implements Listener{
+    use RemovePluginDataDirTrait;
+
     /** @var array<string, string> */
     private array $caches = ["" => ""];
 
     protected function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-
-        /**
-         * This is a plugin that does not use data folders.
-         * Delete the unnecessary data folder of this plugin for users.
-         */
-        $dataFolder = $this->getDataFolder();
-        if(is_dir($dataFolder) && count(scandir($dataFolder)) <= 2){
-            rmdir($dataFolder);
-        }
     }
 
     /**
