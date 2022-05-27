@@ -13,7 +13,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="https://raw.githubusercontent.com/presentkim-pm/IgnoreCase/main/icon.png" alt="Logo" width="80" height="80">
+  <img src="https://raw.githubusercontent.com/presentkim-pm/IgnoreCase/main/assets/icon.png" alt="Logo" width="80" height="80">
   <h3>IgnoreCase</h3>
   <p align="center">
     An plugin that automatically corrects the case of commands!
@@ -71,5 +71,5 @@ Distributed under the **LGPL 3.0**. See [LICENSE][license-url] for more informat
 [issues-url]: https://github.com/presentkim-pm/IgnoreCase/issues
 [license-url]: https://github.com/presentkim-pm/IgnoreCase/blob/main/LICENSE
 
-[project-icon]: https://raw.githubusercontent.com/presentkim-pm/IgnoreCase/main/icon.png
+[project-icon]: https://raw.githubusercontent.com/presentkim-pm/IgnoreCase/main/assets/icon.png
 [project-preview]: https://raw.githubusercontent.com/presentkim-pm/IgnoreCase/main/project-preview.png
