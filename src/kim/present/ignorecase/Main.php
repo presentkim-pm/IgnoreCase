@@ -42,7 +42,10 @@ final class Main extends PluginBase implements Listener{
     use RemovePluginDataDirTrait;
 
     /** @var array<string, string> */
-    private array $caches = ["" => ""];
+    private array $replaceMap = ["" => ""];
+
+    /** @var array<string, true> */
+    private array $skipList = ["" => true];
 
     protected function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -54,36 +57,40 @@ final class Main extends PluginBase implements Listener{
      * @priority LOWEST
      */
     public function onCommandEvent(CommandEvent $event) : void{
-        $commandLines = explode(" ", rtrim($event->getCommand(), "\r\n"));
-        $label = array_shift($commandLines);
+        $args = explode(" ", rtrim($event->getCommand(), "\r\n"));
+        $label = array_shift($args);
 
-        /** Check caches and change command name if cache is not empty */
-        if(($cache = $this->caches[$label] ?? null) !== null){
-            if($cache !== ""){
-                $event->setCommand(implode(" ", [$cache, ...$commandLines]));
-            }
+        /** Skip if label exists in skip list */
+        if(isset($this->skipList[$label])){
             return;
         }
 
-        $commands = $this->getServer()->getCommandMap()->getCommands();
-        if(isset($commands[$label])){
-            /** Register "" to cache to avoid retrying navigations */
-            $this->caches[$label] = "";
+        /** Replace if label exists in replace map */
+        if(isset($this->replaceMap[$label])){
+            $event->setCommand(implode(" ", [$this->replaceMap[$label], ...$args]));
             return;
         }
 
-        /** Find command by case-insensitive and register caches */
-        foreach($commands as $key => $value){
+        $knownCommands = $this->getServer()->getCommandMap()->getCommands();
+        if(isset($knownCommands[$label])){
+            /** If the label is already correct, put the label on the skip list to avoid retrying the navigation. */
+            $this->skipList[$label] = true;
+            return;
+        }
+
+        /** Find commands with case insensitivity */
+        foreach($knownCommands as $key => $value){
             if(
                 strcasecmp($label, $find = $key) === 0 ||
                 strcasecmp($label, $find = $value->getLabel()) === 0
             ){
-                $this->caches[$label] = $find;
-                $event->setCommand(implode(" ", [$find, ...$commandLines]));
+                $this->replaceMap[$label] = $find;
+                $event->setCommand(implode(" ", [$find, ...$args]));
                 return;
             }
         }
-        /** Register "" to cache to avoid retrying navigations */
-        $this->caches[$label] = "";
+
+        /** If the command can't be found, put the label on the skip list to avoid retrying the navigation. */
+        $this->skipList[$label] = true;
     }
 }
