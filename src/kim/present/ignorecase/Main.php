@@ -41,11 +41,11 @@ use function strcasecmp;
 final class Main extends PluginBase implements Listener{
     use RemovePluginDataDirTrait;
 
-    /** @var array<string, string> */
+    /**
+     * @var string[]
+     * @phpstan-var array<string, string>
+     */
     private array $replaceMap = ["" => ""];
-
-    /** @var array<string, true> */
-    private array $skipList = ["" => true];
 
     protected function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -60,21 +60,23 @@ final class Main extends PluginBase implements Listener{
         $args = explode(" ", rtrim($event->getCommand(), "\r\n"));
         $label = array_shift($args);
 
-        /** Skip if label exists in skip list */
-        if(isset($this->skipList[$label])){
-            return;
-        }
-
         /** Replace if label exists in replace map */
         if(isset($this->replaceMap[$label])){
-            $event->setCommand(implode(" ", [$this->replaceMap[$label], ...$args]));
+            $replacement = $this->replaceMap[$label];
+
+            // Skip if replacement is empty. It means label is already correctly
+            if($replacement === ""){
+                return;
+            }
+
+            $event->setCommand(implode(" ", [$replacement, ...$args]));
             return;
         }
 
         $knownCommands = $this->getServer()->getCommandMap()->getCommands();
         if(isset($knownCommands[$label])){
             /** If the label is already correct, put the label on the skip list to avoid retrying the navigation. */
-            $this->skipList[$label] = true;
+            $this->replaceMap[$label] = "";
             return;
         }
 
