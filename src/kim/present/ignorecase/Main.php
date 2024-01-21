@@ -89,8 +89,5 @@ final class Main extends PluginBase implements Listener{
                 return;
             }
         }
-
-        /** If the command can't be found, put the label on the skip list to avoid retrying the navigation. */
-        $this->skipList[$label] = true;
     }
 }
