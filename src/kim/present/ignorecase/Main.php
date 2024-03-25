@@ -27,7 +27,6 @@ declare(strict_types=1);
 
 namespace kim\present\ignorecase;
 
-use kim\present\traits\removeplugindatadir\RemovePluginDataDirTrait;
 use pocketmine\event\Listener;
 use pocketmine\event\server\CommandEvent;
 use pocketmine\plugin\PluginBase;
@@ -39,8 +38,6 @@ use function rtrim;
 use function strcasecmp;
 
 final class Main extends PluginBase implements Listener{
-    use RemovePluginDataDirTrait;
-
     /**
      * @var string[]
      * @phpstan-var array<string, string>
