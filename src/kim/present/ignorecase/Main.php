@@ -12,9 +12,9 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author  PresentKim (debe3721@gmail.com)
- * @link    https://github.com/PresentKim
- * @license https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
+ * @author       PresentKim (debe3721@gmail.com)
+ * @link         https://github.com/PresentKim
+ * @license      https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
  *
  *   (\ /)
  *  ( . .) ♥
@@ -38,6 +38,7 @@ use function rtrim;
 use function strcasecmp;
 
 final class Main extends PluginBase implements Listener{
+
     /**
      * @var string[]
      * @phpstan-var array<string, string>
@@ -89,8 +90,8 @@ final class Main extends PluginBase implements Listener{
         /** Find commands with case insensitivity */
         foreach($knownCommands as $key => $value){
             if(
-                strcasecmp($label, $find = $key) === 0 ||
-                strcasecmp($label, $find = $value->getLabel()) === 0
+                strcasecmp($label, $find = $key) === 0
+                || strcasecmp($label, $find = $value->getLabel()) === 0
             ){
                 $this->replaceMap[$label] = $find;
                 $event->setCommand(implode(" ", [$find, ...$args]));
