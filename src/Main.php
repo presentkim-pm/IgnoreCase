@@ -32,18 +32,15 @@ use pocketmine\event\server\CommandEvent;
 use pocketmine\plugin\PluginBase;
 
 use function array_shift;
+use function count;
 use function explode;
 use function implode;
+use function is_dir;
+use function rmdir;
 use function rtrim;
-use function strcasecmp;
+use function scandir;
 
 final class Main extends PluginBase implements Listener{
-
-    /**
-     * @var string[]
-     * @phpstan-var array<string, string>
-     */
-    private array $replaceMap = ["" => ""];
 
     protected function onEnable() : void{
         /**
@@ -51,8 +48,11 @@ final class Main extends PluginBase implements Listener{
          * Delete the unnecessary data folder of this plugin for users.
          */
         $dataFolder = $this->getDataFolder();
-        if(is_dir($dataFolder) && count(scandir($dataFolder)) <= 2){
-            rmdir($dataFolder);
+        if(is_dir($dataFolder)){
+            $entries = scandir($dataFolder);
+            if($entries !== false && count($entries) <= 2){
+                @rmdir($dataFolder);
+            }
         }
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -67,36 +67,9 @@ final class Main extends PluginBase implements Listener{
         $args = explode(" ", rtrim($event->getCommand(), "\r\n"));
         $label = array_shift($args);
 
-        /** Replace if label exists in replace map */
-        if(isset($this->replaceMap[$label])){
-            $replacement = $this->replaceMap[$label];
-
-            // Skip if replacement is empty. It means label is already correctly
-            if($replacement === ""){
-                return;
-            }
-
+        $replacement = CommandLabelResolver::resolve($label, $this->getServer()->getCommandMap()->getCommands());
+        if($replacement !== null){
             $event->setCommand(implode(" ", [$replacement, ...$args]));
-            return;
-        }
-
-        $knownCommands = $this->getServer()->getCommandMap()->getCommands();
-        if(isset($knownCommands[$label])){
-            /** If the label is already correct, put the label on the skip list to avoid retrying the navigation. */
-            $this->replaceMap[$label] = "";
-            return;
-        }
-
-        /** Find commands with case insensitivity */
-        foreach($knownCommands as $key => $value){
-            if(
-                strcasecmp($label, $find = $key) === 0
-                || strcasecmp($label, $find = $value->getLabel()) === 0
-            ){
-                $this->replaceMap[$label] = $find;
-                $event->setCommand(implode(" ", [$find, ...$args]));
-                return;
-            }
         }
     }
 }

@@ -1,8 +1,0 @@
----
-branches:
-  - main
-projects:
-  IgnoreCase:
-    path: ""
-    icon: "assets/icon.png"
-...
